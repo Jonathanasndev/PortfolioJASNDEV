@@ -1,0 +1,221 @@
+:root {
+    --primary: #00f2fe;
+    --secondary: #4facfe;
+    --bg: #0f172a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text: #f1f5f9;
+    --accent: #ff007a;
+}
+
+/* Modo Claro Adaptado */
+body.light-mode {
+    --bg: #f0f2f5;
+    --card-bg: rgba(0, 0, 0, 0.05);
+    --text: #1e293b;
+    --primary: #4facfe;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Blobs de fundo */
+.shape-blob {
+    background: var(--primary);
+    height: 300px; width: 300px;
+    border-radius: 40% 50% 30% 70%;
+    position: fixed;
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: -1;
+    animation: move 20s infinite alternate;
+}
+.shape-blob.one { top: -50px; right: -50px; background: var(--accent); }
+.shape-blob.two { bottom: -50px; left: -50px; }
+
+@keyframes move {
+    from { transform: translate(0,0) rotate(0); }
+    to { transform: translate(100px, 100px) rotate(360deg); }
+}
+
+/* Nav */
+.glass-nav {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-content { display: flex; justify-content: space-between; width: 100%; align-items: center; }
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+.logo span { color: var(--primary); }
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 0;
+}
+
+.hero-img-box {
+    position: relative;
+}
+
+.foto-perfil {
+    width: 180px; height: 180px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+.glitch-text { font-size: 3.5rem; font-weight: 800; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Grid System */
+.main-grid { display: grid; grid-template-columns: 300px 1fr; gap: 30px; margin-bottom: 100px; }
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.skills-flex { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
+.skill-item { font-size: 1.8rem; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 12px; transition: 0.3s; }
+.skill-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
+
+/* Projects */
+.projects-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.project-glass-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.4s;
+}
+
+.project-glass-card:hover { transform: scale(1.02); border-color: var(--primary); }
+
+.pj-img { width: 100%; height: 160px; overflow: hidden; }
+.pj-img img { width: 100%; height: 100%; object-fit: cover; }
+.pj-details { padding: 20px; }
+
+.btn-glow {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.float-wa {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: white; text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 850px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .hero { flex-direction: column; text-align: center; }
+    .projects-container { grid-template-columns: 1fr; }
+}
+
+/* Estilo do Toggle */
+.toggle-label {
+    width: 45px; height: 22px; background: #333;
+    border-radius: 50px; position: relative; cursor: pointer; display: block;
+}
+.toggle-ball {
+    position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+    background: var(--primary); border-radius: 50%; transition: 0.3s;
+}
+.toggle-checkbox:checked + .toggle-label .toggle-ball { transform: translateX(23px); }
+
+/* No seu styles.css, procure e deixe assim: */
+.toggle-checkbox {
+    position: absolute; /* Tira do fluxo normal da página */
+    opacity: 0;         /* Deixa invisível */
+    width: 0;           /* Garante que não ocupe largura */
+    height: 0;          /* Garante que não ocupe altura */
+    pointer-events: none; /* Garante que cliques passem direto para a label */
+}
+
+/* Barra de Progresso */
+.progress-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+}
+
+.progress-bar {
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    width: 0%;
+}
+
+/* Brilho Dinâmico nos Botões */
+.btn-glow {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: none;
+    z-index: 1;
+}
+
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    transition: all 0.6s;
+    z-index: -1;
+}
+
+.btn-glow:hover::before {
+    left: 100%;
+}
+
+.btn-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+}
+
+/* Efeito de Vidro mais nítido no Hover dos cards */
+.project-glass-card {
+    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s;
+}
