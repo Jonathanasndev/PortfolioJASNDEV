@@ -34,7 +34,6 @@ window.onscroll = () => {
   document.getElementById("myBar").style.width = scrolled + "%";
 };
 
-// 2. Efeito Tilt nos Cards
 const cards = document.querySelectorAll(".project-glass-card");
 
 cards.forEach((card) => {
